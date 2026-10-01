@@ -844,8 +844,8 @@ class PortableRubyPackage
     if linux?
       compile_flags = ["-fPIC"]
       compile_flags << "-mno-outline-atomics" if linux_arm64?
-      flags["CFLAGS"] = [ENV["CFLAGS"], *compile_flags].compact.join(" ")
-      flags["CXXFLAGS"] = [ENV["CXXFLAGS"], *compile_flags].compact.join(" ")
+      flags["CC"] = [ENV.fetch("CC", "cc"), *compile_flags].join(" ")
+      flags["CXX"] = [ENV.fetch("CXX", "c++"), *compile_flags].join(" ")
     end
     build_env(flags.merge(extra))
   end
