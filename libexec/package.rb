@@ -842,7 +842,7 @@ class PortableRubyPackage
   def dependency_build_env(extra = {})
     flags = {}
     if linux?
-      compile_flags = ["-fPIC"]
+      compile_flags = ["-fPIC", "-O2"]
       compile_flags << "-mno-outline-atomics" if linux_arm64?
       flags["CFLAGS"] = [ENV["CFLAGS"], *compile_flags].compact.join(" ")
       flags["CXXFLAGS"] = [ENV["CXXFLAGS"], *compile_flags].compact.join(" ")
